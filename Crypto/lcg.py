@@ -33,6 +33,6 @@ def find_m(X):
 		cong.append(t[i+2]*t[i] - t[i+1]*t[i+1])
 	m = cong[0]
 	for i in range(len(cong)-1):
-		m = abs(gcd(m, cong[i+1]))
+		m = gcd(m, cong[i+1])
 	return find_a(X, m)
 
