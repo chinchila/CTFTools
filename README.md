@@ -1,2 +1,2 @@
 # CTFTools
-Some tools I made to pwn all challenges
+Some tools I have to pwn all challenges
