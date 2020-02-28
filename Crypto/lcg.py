@@ -2,6 +2,7 @@ from gmpy2 import gcd, invert
 
 class LCG:
 	"""
+	X[n] = aX[n-1] + c (mod m)
 	m is mod
 	a is multiplicative
 	c is increment
