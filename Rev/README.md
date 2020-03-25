@@ -1,23 +1,23 @@
 # Reverse engineering challenges
 ## Binary files
-[Ghidra](https://ghidra-sre.org/)
-[Radare2](https://github.com/radareorg/radare2)
-[UPX](https://upx.github.io/)
+[Ghidra](https://ghidra-sre.org/)  
+[Radare2](https://github.com/radareorg/radare2)  
+[UPX](https://upx.github.io/)  
 
 ## Python
-[uncompyle6](https://pypi.org/project/uncompyle6/)
+[uncompyle6](https://pypi.org/project/uncompyle6/)  
 
 ## PHP
-[PHP Opcodes](https://www.php.net/manual/pt_BR/internals2.opcodes.php)
+[PHP Opcodes](https://www.php.net/manual/pt_BR/internals2.opcodes.php)  
 
 ## Java
-[jd-gui](http://java-decompiler.github.io/)
+[jd-gui](http://java-decompiler.github.io/)  
 
 ## C#
-[ILSpy](https://github.com/icsharpcode/ILSpy)
+[ILSpy](https://github.com/icsharpcode/ILSpy)  
 
 # Rust, C++ and C
-Good luck, see binary section or llvm
+Good luck, see binary section or llvm  
 
 ## LLVM cheat sheet
 
