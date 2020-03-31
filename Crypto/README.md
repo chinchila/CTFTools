@@ -4,7 +4,7 @@ To install requirements:
 pip install -r requirements.txt
 ```
 ## RSA  
-### [Weiner attack](./weiner_RSA.py)  
+### [Wiener attack](./wiener_RSA.py)  
 Given n and e, if d is small we can find it fast with continued fractions  
 
 ### [Curveball](./curveball_RSA.gp)  
