@@ -14,7 +14,7 @@ BLOCKS = len(FLAG_ENC)//HEX_BLOCK_SIZE
 r = remote(HOST, PORT)
 plaintext = ""
 
-def encrypt( string_sent ):
+def encrypt( string_sent, k ):
     r.recv()
     r.sendline( string_sent )
     g = r.recvline()[len( PREFIX ):].strip()
@@ -26,10 +26,10 @@ for k in range(BLOCKS):
     b = ""
     for i in range( 1, BLOCK_SIZE + 1 ):
         string_sent = "a" * ( BLOCK_SIZE - i )
-        g1 = encrypt( string_sent )
+        g1 = encrypt( string_sent, k )
         print( "String sent: " + string_sent )
         for j in string.printable:
-            g2 = encrypt( string_sent + plaintext + b + j )
+            g2 = encrypt( string_sent + plaintext + b + j, k )
             if g1 == g2:
                 b += j
                 # print(j)
