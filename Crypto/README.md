@@ -8,6 +8,9 @@ pip install -r requirements.txt
 ### [Wiener attack](./wiener_RSA.py)  
 Given n and e, if d is small we can find it fast with continued fractions  
 
+### [Factor n given d](./factorNGivenD.py)
+Given n, e and d, find p and q.
+
 ### [Curveball](./curveball_RSA.gp)  
 Find p, q to sign given message and crypted  
 
