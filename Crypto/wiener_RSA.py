@@ -8,7 +8,7 @@ def rational_to_contfrac(x,y):
 	return pquotients
 
 def convergents_from_contfrac(frac):
-	convs = [];
+	convs = []
 	for i in range(len(frac)):
 		convs.append(contfrac_to_rational(frac[0:i]))
 	return convs
@@ -43,7 +43,7 @@ def isqrt(n):
 
 
 def is_perfect_square(n):
-	h = n & 0xF;
+	h = n & 0xF
 	if h > 9:
 		return -1
 	if ( h != 2 and h != 3 and h != 5 and h != 6 and h != 7 and h != 8 ):
