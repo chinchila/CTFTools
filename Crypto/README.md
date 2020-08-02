@@ -14,6 +14,9 @@ Given n, e and d, find p and q.
 ### [Curveball](./curveball_RSA.gp)  
 Find p, q to sign given message and crypted  
 
+### [Common modulus](./rsa_commonmodulus.py)
+Find message given cyphers with public exponents not coprimes beetween them.
+
 ## AES  
 ### [ECB classical input + flag](./solve_ecb.py)
 
@@ -30,5 +33,6 @@ find m(4 states+), a(3 states+) and c(2 states+)
 ## [MPKC from Chen et al.’s Encryption Scheme (2020)](./mpkc_chen.sage)
 Attack is based on [this paper](https://eprint.iacr.org/2020/053.pdf)  
 
-## 
+## ECDSA
 
+### [biased k attack + repeated nonce attack](./ecdsa.sage)
