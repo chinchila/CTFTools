@@ -36,3 +36,5 @@ Attack is based on [this paper](https://eprint.iacr.org/2020/053.pdf)
 ## ECDSA
 
 ### [biased k attack + repeated nonce attack](./ecdsa.sage)
+
+## [XOR Functions](./xor.py)
