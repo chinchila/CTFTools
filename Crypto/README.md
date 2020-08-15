@@ -6,7 +6,10 @@ pip install -r requirements.txt
 
 ## RSA  
 ### [Wiener attack](./wiener_RSA.py)  
-Given n and e, if d is small we can find it fast with continued fractions  
+Given n and e, if d is small we can find it fast with continued fractions.  
+
+### [Boneh-durfee](./boneh-durfee.sage)
+Given n and e, if d < N^0.292 we can find it using LLL and these cool polynomial stuff they always use.  
 
 ### [Factor n given d](./factorNGivenD.py)
 Given n, e and d, find p and q.
