@@ -20,6 +20,9 @@ Find p, q to sign given message and crypted
 ### [Common modulus](./rsa_commonmodulus.py)
 Find message given cyphers with public exponents not coprimes beetween them.
 
+### [Weak prime factorizarion](./weak_prime.sage)
+When p can be represented as a\*p = u0 + M_1\*u_1 + ... + M_k\*u_k with small p, M_i > 0 for 1 <= i <= k. To understand better read [this paper](https://eprint.iacr.org/2015/398.pdf).
+
 ## AES  
 ### [ECB classical input + flag](./solve_ecb.py)
 
@@ -34,7 +37,7 @@ X[n] = aX[n-1] + c (mod m)
 find m(4 states+), a(3 states+) and c(2 states+)
 
 ## [MPKC from Chen et al.’s Encryption Scheme (2020)](./mpkc_chen.sage)
-Attack is based on [this paper](https://eprint.iacr.org/2020/053.pdf)  
+Attack is based on [this paper](https://eprint.iacr.org/2020/053.pdf).  
 
 ## ECDSA
 
