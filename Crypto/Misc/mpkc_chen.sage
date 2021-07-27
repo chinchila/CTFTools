@@ -27,12 +27,12 @@ def Quad(p):
 quadz = [Quad(p) for p in P]
 
 ## solve sum(ai*quad(pi)) = 0
-mat = matrix(FF, m, n, lambda i, j: quadz[i][j]);
+mat = matrix(FF, m, n, lambda i, j: quadz[i][j])
 
 # step 2
 
 ## get basis on ai of size n-a
-krnl = mat.kernel();
+krnl = mat.kernel()
 
 # step 3
 def decrypt_block(d):

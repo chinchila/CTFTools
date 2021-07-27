@@ -33,15 +33,15 @@ def recover_d_biased_k(q, messages, signatures, l, hash_function=None):
         r, s = Zq(r), Zq(s)
         t = r / (s * 2 ^ l)
         if hash_function is None:
-            u = message / (-s * 2 ^ l)
+            u = message / (-s * 2^l)
         else:
-            u = int(hash_function(message).hexdigest(), 16) / (-s * 2 ^ l)
+            u = int(hash_function(message).hexdigest(), 16) / (-s * 2^l)
         bt.append(int(t))
         bu.append(int(u))
         mtr.append([0] * i + [q] + [0] * (len(signatures) - i - 1 + 2))
 
-    ct = 1 / 2 ^ l
-    cu = q / 2 ^ l
+    ct = 1 / 2^l
+    cu = q / 2^l
     bt.extend([ct, 0])
     bu.extend([0, cu])
 
@@ -52,17 +52,20 @@ def recover_d_biased_k(q, messages, signatures, l, hash_function=None):
 
     lll = matrix_ecdsa.LLL()
     dct = None
+    possible = []
 
     for i in range(len(signatures) + 2):
         if lll[i][-1] == cu:
             dct = lll[i][-2]
-            break
+            possible.append((-dct / ct) % q)
 
-    if dct is not None:
-        d = (-dct / ct) % q
-        return d
+    if len(possible) > 0:
+        return possible
     else:
         return None
+
+def given_nonce(nonce, r, s, z, m):
+    return inverse_mod(Integer(r), Integer(m)) * Mod(Integer(nonce*s - z), Integer(m))
 
 def test_reuse():
     d = getrandbits(256)
@@ -102,17 +105,20 @@ def test_reuse():
             return
     print("Test reuse failed.")
 
+
 def test_biased():
     d = getrandbits(256)
     P = d*G
     BIASED_BITS = 8
     SIGNATURES = 100
     MSG = b"Hello"
+    HOHO = int("1101010", 2)
 
     sigs = []
     for i in range(SIGNATURES):
         z = int(hashlib.sha256(MSG).hexdigest(), 16)
-        k = (randint(1, n-1) >> BIASED_BITS) << BIASED_BITS
+        k = ((randint(1, n-1) >> BIASED_BITS) << BIASED_BITS)+HOHO
+        assert((k&HOHO) == HOHO)
         x, y = (k*G).xy()
         r = Mod(x, n)
         assert r != 0
@@ -134,16 +140,36 @@ def test_biased():
     print("Starting attack.")
     msgs = [MSG for _ in range(SIGNATURES)]
     P = E.point(P)
-    d = recover_d_biased_k(P.order(), msgs, sigs, BIASED_BITS, hashlib.sha256)
+    ds = recover_d_biased_k(P.order(), msgs, sigs, BIASED_BITS, hashlib.sha256)
 
-    d_bytes = long_to_bytes(d)
-    key = int(hashlib.sha256(d_bytes).hexdigest(), 16)
+    for d in ds:
+        d_bytes = long_to_bytes(d)
+        key = int(hashlib.sha256(d_bytes).hexdigest(), 16)
+        m = c^^key
+        msg = long_to_bytes(m)
+        if( msg == flag ):
+            print(f"Test biased k bits successfull.\n{msg}")
+            return
+    print(f"Test biased k bits failed.\n{msg}")
 
-    m = c^^key
-    msg = long_to_bytes(m)
-    assert(msg == flag)
-    print(f"Test biased k bits successfull.\n{msg}")
+def test_given_nonce():
+    d = getrandbits(256)
+    P = d*G
+    k1 = randint(1, n-1)
+
+    z1 = Integer(int(hashlib.sha256(b'Hello').hexdigest(), 16))
+    x1, y1 = (k1*G).xy()
+    r1 = Mod(x1, n)
+    assert r1 != 0
+    s1 = inverse_mod(k1, n)*(z1 + r1*d)
+    assert s1 != 0
+
+    dA = given_nonce(k1, r1, s1, z1, n)
+    assert(dA == d)
+    print("Recovered d knowing nonce")
 
 test_reuse()
 print("="*50)
 test_biased()
+print("="*50)
+test_given_nonce()
